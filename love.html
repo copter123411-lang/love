@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>💕 สำหรับเธอคนพิเศษ</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Mitr:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --pink: #f4a7b9;
+      --deep-pink: #e8758a;
+      --blush: #fce4ec;
+      --rose: #c2185b;
+      --cream: #fff8f9;
+      --soft: #f9d0dc;
+    }
+
+    body {
+      font-family: 'Mitr', sans-serif;
+      background: var(--cream);
+      min-height: 100vh;
+      overflow-x: hidden;
+      cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Ctext y='20' font-size='20'%3E💕%3C/text%3E%3C/svg%3E"), auto;
+    }
+
+    /* floating hearts bg */
+    .hearts-bg {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .heart-float {
+      position: absolute;
+      bottom: -50px;
+      font-size: 1.5rem;
+      opacity: 0;
+      animation: floatUp linear infinite;
+    }
+
+    @keyframes floatUp {
+      0% { transform: translateY(0) rotate(0deg); opacity: 0.6; }
+      100% { transform: translateY(-110vh) rotate(20deg); opacity: 0; }
+    }
+
+    /* hero */
+    .hero {
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem;
+    }
+
+    .hero-badge {
+      background: var(--soft);
+      color: var(--rose);
+      font-size: 0.85rem;
+      font-weight: 500;
+      padding: 6px 20px;
+      border-radius: 999px;
+      letter-spacing: 0.1em;
+      margin-bottom: 1.5rem;
+      animation: fadeDown 0.8s ease both;
+    }
+
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.5rem, 8vw, 5rem);
+      color: var(--rose);
+      line-height: 1.15;
+      margin-bottom: 1rem;
+      animation: fadeDown 0.8s 0.2s ease both;
+    }
+
+    .hero-title em {
+      font-style: italic;
+      color: var(--deep-pink);
+    }
+
+    .hero-sub {
+      font-size: 1.1rem;
+      color: #c06080;
+      font-weight: 300;
+      max-width: 400px;
+      line-height: 1.8;
+      margin-bottom: 2.5rem;
+      animation: fadeDown 0.8s 0.4s ease both;
+    }
+
+    .photo-frame {
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      border: 6px solid var(--pink);
+      box-shadow: 0 0 0 10px var(--soft), 0 20px 60px rgba(228,117,138,0.3);
+      overflow: hidden;
+      margin-bottom: 2rem;
+      animation: fadeDown 0.8s 0.3s ease both;
+      position: relative;
+      background: var(--soft);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 5rem;
+    }
+
+    .photo-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .photo-placeholder {
+      font-size: 4rem;
+    }
+
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* music player */
+    .music-player {
+      background: white;
+      border: 1.5px solid var(--soft);
+      border-radius: 20px;
+      padding: 1rem 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      box-shadow: 0 8px 30px rgba(228,117,138,0.15);
+      animation: fadeDown 0.8s 0.6s ease both;
+      margin-bottom: 1rem;
+    }
+
+    .music-info { text-align: left; }
+    .music-title { font-weight: 500; color: #333; font-size: 0.95rem; }
+    .music-artist { font-size: 0.8rem; color: #999; }
+
+    .play-btn {
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--pink), var(--deep-pink));
+      border: none;
+      color: white;
+      font-size: 1.1rem;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: transform 0.2s;
+      flex-shrink: 0;
+    }
+
+    .play-btn:hover { transform: scale(1.1); }
+
+    .music-wave {
+      display: flex;
+      align-items: center;
+      gap: 3px;
+      height: 24px;
+    }
+
+    .wave-bar {
+      width: 3px;
+      background: var(--pink);
+      border-radius: 2px;
+      animation: wave 1s ease-in-out infinite;
+    }
+
+    .wave-bar:nth-child(2) { animation-delay: 0.1s; }
+    .wave-bar:nth-child(3) { animation-delay: 0.2s; }
+    .wave-bar:nth-child(4) { animation-delay: 0.3s; }
+    .wave-bar:nth-child(5) { animation-delay: 0.4s; }
+
+    @keyframes wave {
+      0%, 100% { height: 6px; }
+      50% { height: 20px; }
+    }
+
+    .wave-bar.paused { animation-play-state: paused; height: 6px; }
+
+    /* scroll hint */
+    .scroll-hint {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      color: var(--deep-pink);
+      font-size: 0.8rem;
+      opacity: 0.7;
+      animation: bounce 2s infinite;
+      z-index: 1;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(8px); }
+    }
+
+    /* love letter section */
+    .section {
+      position: relative;
+      z-index: 1;
+      padding: 5rem 2rem;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      text-align: center;
+      font-size: 0.8rem;
+      letter-spacing: 0.15em;
+      color: var(--deep-pink);
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+      text-transform: uppercase;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 5vw, 2.8rem);
+      color: var(--rose);
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+
+    .letter-card {
+      background: white;
+      border-radius: 24px;
+      padding: 2.5rem;
+      border: 1.5px solid var(--soft);
+      box-shadow: 0 20px 60px rgba(228,117,138,0.12);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .letter-card::before {
+      content: '❝';
+      font-family: 'Playfair Display', serif;
+      font-size: 8rem;
+      color: var(--blush);
+      position: absolute;
+      top: -1rem;
+      left: 1rem;
+      line-height: 1;
+      pointer-events: none;
+    }
+
+    .letter-text {
+      font-size: 1.05rem;
+      line-height: 2;
+      color: #555;
+      position: relative;
+      z-index: 1;
+      font-weight: 300;
+    }
+
+    .letter-text strong {
+      color: var(--rose);
+      font-weight: 500;
+    }
+
+    .letter-sign {
+      text-align: right;
+      margin-top: 1.5rem;
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      color: var(--deep-pink);
+      font-size: 1.1rem;
+    }
+
+    /* reasons */
+    .reasons-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .reason-card {
+      background: white;
+      border-radius: 20px;
+      padding: 1.5rem 1rem;
+      text-align: center;
+      border: 1.5px solid var(--soft);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .reason-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 30px rgba(228,117,138,0.2);
+    }
+
+    .reason-icon { font-size: 2rem; margin-bottom: 0.5rem; }
+    .reason-text { font-size: 0.9rem; color: #666; line-height: 1.5; }
+
+    /* photo gallery */
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+
+    .gallery-item {
+      aspect-ratio: 1;
+      border-radius: 16px;
+      background: var(--soft);
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      border: 1.5px solid var(--blush);
+      transition: transform 0.2s;
+    }
+
+    .gallery-item:hover { transform: scale(1.03); }
+    .gallery-item:first-child { grid-column: span 2; aspect-ratio: 2/1; }
+
+    /* footer */
+    .footer {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 3rem 2rem 4rem;
+      color: var(--deep-pink);
+    }
+
+    .footer-heart {
+      font-size: 3rem;
+      animation: heartbeat 1.5s ease infinite;
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    @keyframes heartbeat {
+      0%, 100% { transform: scale(1); }
+      14% { transform: scale(1.2); }
+      28% { transform: scale(1); }
+      42% { transform: scale(1.15); }
+      70% { transform: scale(1); }
+    }
+
+    .footer p { font-size: 0.9rem; opacity: 0.7; }
+
+    /* divider */
+    .divider {
+      text-align: center;
+      color: var(--pink);
+      font-size: 1.2rem;
+      letter-spacing: 0.5rem;
+      margin: 1rem 0 3rem;
+    }
+
+    audio { display: none; }
+  </style>
+</head>
+<body>
+
+<div class="hearts-bg" id="heartsBg"></div>
+
+<audio id="bgMusic" loop>
+  <!-- ใส่ลิงก์เพลงตรงนี้ -->
+  <source src="Song.mp3 "type="audio/mpeg">
+</audio>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge">✨ สำหรับเธอคนเดียวเท่านั้น ✨</div>
+
+  <div class="photo-frame">
+    <!-- ถ้ามีรูปให้เปลี่ยนเป็น <img src=""> -->
+    <img src="4F153E4B-63EB-4A88-931E-7D7925DCB365.jpg">
+  </div>
+
+  <h1 class="hero-title">เธอคือ<br><em>คนพิเศษ</em><br>ของฉัน</h1>
+  <p class="hero-sub">ทุกวันที่มีเธออยู่ด้วย<br>คือวันที่ดีที่สุดในชีวิตฉัน 💕</p>
+
+  <div class="music-player">
+    <button class="play-btn" id="playBtn" onclick="toggleMusic()">▶</button>
+    <div class="music-info">
+      <div class="music-title">เพลงของเรา 🎵</div>
+      <div class="music-artist">กด ▶ เพื่อเปิดเพลง</div>
+    </div>
+    <div class="music-wave" id="musicWave">
+      <div class="wave-bar paused"></div>
+      <div class="wave-bar paused"></div>
+      <div class="wave-bar paused"></div>
+      <div class="wave-bar paused"></div>
+      <div class="wave-bar paused"></div>
+    </div>
+  </div>
+
+  <div class="scroll-hint">↓ เลื่อนลงมาดูต่อ ↓</div>
+</section>
+
+<!-- LOVE LETTER -->
+<section class="section">
+  <p class="section-label">จดหมายรัก</p>
+  <h2 class="section-title">ถึงเธอ...</h2>
+
+  <div class="letter-card">
+    <p class="letter-text">
+      ถึงแม้จะมีวันที่ยากลำบาก แต่ทุกครั้งที่เห็นหน้าเธอ<br>
+      ทุกอย่างมันก็ดูเบาลงเสมอ 🌷<br><br>
+      ฉันอยากให้เธอรู้ว่า <strong>เธอสวยงามมากทั้งข้างนอกและข้างใน</strong><br>
+      และฉันโชคดีมากที่ได้มีเธออยู่ข้างๆ<br><br>
+      ขอบคุณที่เป็นเธอ ขอบคุณที่รักฉัน<br>
+      และขอบคุณที่ทำให้ทุกวันของฉันมีความหมาย 💕
+    </p>
+    <div class="letter-sign">— ด้วยรัก 🌹</div>
+  </div>
+</section>
+
+<!-- REASONS -->
+<section class="section" style="padding-top: 0;">
+  <p class="section-label">เหตุผลที่รักเธอ</p>
+  <h2 class="section-title">สิ่งที่ฉันชอบในตัวเธอ</h2>
+  <div class="divider">· · ♡ · ·</div>
+
+  <div class="reasons-grid">
+    <div class="reason-card">
+      <div class="reason-icon">😊</div>
+      <div class="reason-text">รอยยิ้มของเธอทำให้ฉันอุ่นใจทุกครั้ง</div>
+    </div>
+    <div class="reason-card">
+      <div class="reason-icon">💪</div>
+      <div class="reason-text">เธอแข็งแกร่งและไม่เคยยอมแพ้</div>
+    </div>
+    <div class="reason-card">
+      <div class="reason-icon">🤗</div>
+      <div class="reason-text">เธอใจดีกับทุกคนรอบข้างเสมอ</div>
+    </div>
+    <div class="reason-card">
+      <div class="reason-icon">✨</div>
+      <div class="reason-text">เธอทำให้ทุกอย่างสว่างขึ้นเมื่ออยู่ด้วย</div>
+    </div>
+    <div class="reason-card">
+      <div class="reason-icon">🌙</div>
+      <div class="reason-text">คุยกับเธอได้ทุกเรื่องไม่มีเบื่อ</div>
+    </div>
+    <div class="reason-card">
+      <div class="reason-icon">💖</div>
+      <div class="reason-text">แค่มีเธออยู่ก็พอแล้วสำหรับฉัน</div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="section" style="padding-top: 0;">
+  <p class="section-label">ความทรงจำ</p>
+  <h2 class="section-title">ช่วงเวลาของเรา</h2>
+  <div class="divider">· · ♡ · ·</div>
+
+  <div class="gallery">
+    <div class="gallery-item">🌸</div>
+    <div class="gallery-item">🌙</div>
+    <div class="gallery-item">💕</div>
+    <div class="gallery-item">🌹</div>
+    <div class="gallery-item">✨</div>
+  </div>
+  <p style="text-align:center; color:#bbb; font-size:0.8rem; margin-top:1rem;">
+    * ใส่รูปภาพของคุณได้เลยครับ
+  </p>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <span class="footer-heart">💗</span>
+  <p>รักเธอมากกว่าที่คำพูดจะบอกได้</p>
+  <p style="margin-top:0.3rem;">ตลอดไป 🌙</p>
+</footer>
+
+<script>
+  // floating hearts
+  const emojis = ['💕', '🌸', '✨', '💖', '🌹', '💗'];
+  const bg = document.getElementById('heartsBg');
+
+  for (let i = 0; i < 18; i++) {
+    const h = document.createElement('div');
+    h.className = 'heart-float';
+    h.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+    h.style.left = Math.random() * 100 + '%';
+    h.style.fontSize = (Math.random() * 1.2 + 0.8) + 'rem';
+    h.style.animationDuration = (Math.random() * 10 + 8) + 's';
+    h.style.animationDelay = (Math.random() * 10) + 's';
+    bg.appendChild(h);
+  }
+
+  // music toggle
+  let playing = false;
+  const audio = document.getElementById('bgMusic');
+  const btn = document.getElementById('playBtn');
+  const bars = document.querySelectorAll('.wave-bar');
+
+  function toggleMusic() {
+    
+    if (playing) {
+      audio.pause();
+      btn.textContent = '▶';
+      bars.forEach(b => b.classList.add('paused'));
+    } else {
+      audio.play();
+      btn.textContent = '⏸';
+      bars.forEach(b => b.classList.remove('paused'));
+    }
+    playing = !playing;
+  }
+</script>
+</body>
+</html>
